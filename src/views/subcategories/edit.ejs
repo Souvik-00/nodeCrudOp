@@ -1,0 +1,31 @@
+<%- include("../layouts/main", {
+  title: "Edit Subcategory",
+  body: `
+    <h2>Edit Subcategory</h2>
+
+    <form action="/subcategories/edit/${subcategory._id}?_method=PUT" method="POST" class="mt-3">
+
+      <div class="mb-3">
+        <label class="form-label">Subcategory Name</label>
+        <input type="text" name="name" value="${subcategory.name}" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Category</label>
+        <select name="category" class="form-control" required>
+          ${categories
+            .map(
+              c => `
+              <option value="${c._id}" ${c._id.toString() === subcategory.category.toString() ? "selected" : ""}>
+                ${c.name}
+              </option>`
+            )
+            .join("")}
+        </select>
+      </div>
+
+      <button class="btn btn-primary">Update</button>
+      <a href="/subcategories" class="btn btn-secondary">Back</a>
+    </form>
+  `
+}) %>

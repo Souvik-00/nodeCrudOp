@@ -1,0 +1,39 @@
+<%- include("../layouts/main", {
+  title: "Subcategories",
+  body: `
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2>Subcategories</h2>
+      <a href="/subcategories/add" class="btn btn-primary">Add Subcategory</a>
+    </div>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${subcategories
+          .map(
+            (s, i) => `
+            <tr>
+              <td>${i + 1}</td>
+              <td>${s.name}</td>
+              <td>${s.category?.name}</td>
+              <td>
+                <a href="/subcategories/edit/${s._id}" class="btn btn-sm btn-warning">Edit</a>
+                <form action="/subcategories/delete/${s._id}?_method=DELETE" method="POST" style="display:inline-block;">
+                  <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+              </td>
+            </tr>
+          `
+          )
+          .join("")}
+      </tbody>
+    </table>
+  `
+}) %>

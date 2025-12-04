@@ -1,0 +1,26 @@
+<%- include("../layouts/main", {
+  title: "Add Subcategory",
+  body: `
+    <h2>Add Subcategory</h2>
+
+    <form action="/subcategories/add" method="POST" class="mt-3">
+
+      <div class="mb-3">
+        <label class="form-label">Subcategory Name</label>
+        <input type="text" name="name" class="form-control" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Category</label>
+        <select name="category" class="form-control" required>
+          ${categories
+            .map(c => `<option value="${c._id}">${c.name}</option>`)
+            .join("")}
+        </select>
+      </div>
+
+      <button class="btn btn-success">Save</button>
+      <a href="/subcategories" class="btn btn-secondary">Back</a>
+    </form>
+  `
+}) %>

@@ -1,0 +1,54 @@
+<%- include("../layouts/main", {
+  title: "Edit Product",
+  body: `
+    <h2>Edit Product</h2>
+
+    <form action="/products/edit/${product._id}?_method=PUT" method="POST" class="mt-3">
+
+      <div class="mb-3">
+        <label>Name</label>
+        <input type="text" name="name" value="${product.name}" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label>Category</label>
+        <select name="category" class="form-control" required>
+          ${categories
+            .map(
+              c => `<option value="${c._id}" ${
+                c._id.toString() === product.category.toString() ? "selected" : ""
+              }>${c.name}</option>`
+            )
+            .join("")}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label>Subcategory</label>
+        <select name="subcategory" class="form-control" required>
+          ${subcategories
+            .map(
+              sc => `<option value="${sc._id}" ${
+                sc._id.toString() === product.subcategory.toString() ? "selected" : ""
+              }>${sc.name}</option>`
+            )
+            .join("")}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label>Price</label>
+        <input type="number" name="price" value="${product.price}" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label>Stock</label>
+        <input type="number" name="stock" value="${product.stock}" class="form-control" required>
+      </div>
+
+      <button class="btn btn-primary">Update</button>
+      <a href="/products" class="btn btn-secondary">Back</a>
+
+    </form>
+  `
+}) %>

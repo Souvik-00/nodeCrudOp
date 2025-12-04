@@ -1,0 +1,47 @@
+/* Full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background: #1e1e1e;
+    min-height: 100vh;
+    color: #fff;
+    padding: 20px 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebar a {
+    display: block;
+    color: #ccc;
+    padding: 10px 14px;
+    margin: 5px 0;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background: #333;
+    color: #fff;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 240px;
+    padding-bottom: 40px;
+}
+
+/* Navbar */
+.navbar {
+    background: #fff !important;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}

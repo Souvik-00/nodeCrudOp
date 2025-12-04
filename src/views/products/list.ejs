@@ -1,0 +1,48 @@
+<%- include("../layouts/main", {
+  title: "Products",
+  body: `
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2>Products</h2>
+      <a href="/products/add" class="btn btn-primary">Add Product</a>
+    </div>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Subcategory</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        ${products
+          .map(
+            (p, i) => `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${p.name}</td>
+            <td>${p.category?.name}</td>
+            <td>${p.subcategory?.name}</td>
+            <td>${p.price}</td>
+            <td>${p.stock}</td>
+            <td>
+              <a href="/products/edit/${p._id}" class="btn btn-sm btn-warning">Edit</a>
+
+              <form action="/products/delete/${p._id}?_method=DELETE"
+                method="POST" style="display:inline-block;">
+                <button class="btn btn-sm btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        `
+          )
+          .join("")}
+      </tbody>
+    </table>
+  `
+}) %>
